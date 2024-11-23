@@ -1,11 +1,11 @@
 // Funciones previas para la obtención de datos y la autenticación
-const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
-const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publish.json";
-const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
-const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
-const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
-const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
-const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
+const CATEGORIES_URL = '/data/cats/cat.json';
+const PUBLISH_PRODUCT_URL = "/data/sell/publish.json";
+const PRODUCTS_URL = "/data/cats_products/";
+const PRODUCT_INFO_URL = "/data/products/";
+const PRODUCT_INFO_COMMENTS_URL = "/data/products_comments/";
+const CART_INFO_URL = "/data/user_cart/";
+const CART_BUY_URL = "/data/cart/buy.json";
 const EXT_TYPE = ".json";
 
 let showSpinner = function() {
@@ -122,6 +122,22 @@ document.addEventListener('DOMContentLoaded', function() {
       const outsideCardElements = document.querySelectorAll('.categoria-titulo, .lead, hr, body > p, body > h1, body > h2, body > h3, body > h4, body > h5, body > h6');
       const cardElements = document.querySelectorAll('.card, .custom-cardinga-body, .list-group-item');
       const categoryTitles = document.querySelectorAll('.category-title');
+      
+      outsideCardElements.forEach(element => {
+        if (body.classList.contains('dark-mode')) {
+          if (!element.classList.contains('category-title')) {
+            element.style.color = '#fff';  // Texto blanco fuera de las tarjetas, excepto para .category-title
+          }
+          if (element.tagName.toLowerCase() === 'hr') {
+            element.style.borderColor = '#fff';  // Línea hr blanca
+          }
+        } else {
+          element.style.color = '';
+          if (element.tagName.toLowerCase() === 'hr') {
+            element.style.borderColor = '';
+          }
+        }
+      });
 
       cardElements.forEach(element => {
         if (body.classList.contains('dark-mode')) {
@@ -160,6 +176,72 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+   // Función para actualizar estilos específicos de la página de categorías
+   function updateMYProfileStyles() {
+    // Verificamos que estamos en la página my-profile.html
+    if (window.location.pathname.includes('my-profile.html')) {
+        const body = document.querySelector('body'); // Asegúrate de que body está bien referenciado
+        const outsideCardElements = document.querySelectorAll('.categoria-titulo, .lead, hr, body > p, body > h1, body > h2, body > h3, body > h4, body > h5, body > h6');
+        const cardElements = document.querySelectorAll('.card, .custom-cardinga-body, .list-group-item');
+        const categoryTitles = document.querySelectorAll('.category-title');
+        
+        // Aplicar estilo solo si estamos en la página de perfil y no afectamos categorías
+        outsideCardElements.forEach(element => {
+            if (body.classList.contains('dark-mode')) {
+                if (!element.classList.contains('category-title')) {  // No afectamos category-title fuera de las tarjetas
+                    element.style.color = '#fff';  // Texto blanco fuera de las tarjetas, excepto para .category-title
+                }
+                if (element.tagName.toLowerCase() === 'hr') {
+                    element.style.borderColor = '#fff';  // Línea hr blanca
+                }
+            } else {
+                element.style.color = '';
+                if (element.tagName.toLowerCase() === 'hr') {
+                    element.style.borderColor = '';
+                }
+            }
+        });
+
+        cardElements.forEach(element => {
+            if (body.classList.contains('dark-mode')) {
+                element.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';  // Fondo oscuro para las tarjetas
+                element.style.color = '#707070';  // Texto gris más oscuro dentro de las tarjetas
+                element.style.opacity = '0.9';
+            } else {
+                element.style.backgroundColor = '';
+                element.style.color = '';
+                element.style.opacity = '1';
+            }
+
+            // Aplicar estilos a los elementos de texto dentro de las tarjetas
+            const cardTextElements = element.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
+            cardTextElements.forEach(textElement => {
+                if (body.classList.contains('dark-mode')) {
+                    if (!textElement.classList.contains('category-title')) {
+                        textElement.style.color = '#707070';  // Texto gris más oscuro dentro de las tarjetas, excepto para .category-title
+                    }
+                } else {
+                    textElement.style.color = '';
+                }
+            });
+        });
+
+        // Manejar específicamente los elementos .category-title solo en la página de perfil
+        categoryTitles.forEach(title => {
+            if (body.classList.contains('dark-mode')) {
+                title.style.position = 'relative';
+                title.style.zIndex = '2';
+            } else {
+                title.style.position = '';
+                title.style.zIndex = '';
+            }
+        });
+    }
+}
+
+
+  // Actualizar estilos al cargar la página y cuando cambie el modo
+  updateMYProfileStyles()
   updateCategoryStyles();
   toggleButton.addEventListener('click', updateCategoryStyles);
 });

@@ -76,56 +76,35 @@
       z-index: 2; /* Asegúrate de que el contenido esté por encima de la superposición */
     }
 
-    .btn-warning {
-      background-color: #f08c2f !important; /* Cambia el color de fondo a naranja */
-      border: 3px solid #f0a35a; /* Borde de color beige */
-      font-family: 'Cormorant Garamond', serif; /* Tipografía personalizada */
-      color: #000000 !important; /* Texto negro con prioridad */
-      font-weight: bold; /* Texto en negrita */
-      font-size: 1.3em; /* Tamaño de fuente */
-      border-radius: 15px; /* Bordes redondeados */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    }
-
-
     #profileForm {
       margin-bottom: 20px;
-      margin-top: 20px;
       border-radius: 15px; /* bordes redondeados */
-      border: 3px solid #eed6a9;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* sombra */
-      /*magic*/
-      position: relative; /* Necesario para posicionar el pseudo-elemento */
-      z-index: 1; /* Asegura que el contenido esté por encima */
+      border: 3px solid #eed6a9;
+      margin-bottom: 20px;
+      margin-top: 20px;
       background-image: url('img/fondocart.jpg'); /* Ruta de tu imagen */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      opacity: 0.9; /* Ajusta la opacidad */
       transition: background-color 0.3s, color 0.3s; /* Transición para el modo oscuro*/
     }
 
-    .dark-mode #profileForm {
-      background-image: url('img/fondocart.jpg'); /* Ruta de tu imagen */
+    .darkmode  {
+      background-image: url('img/fondoCAT.jpg'); /* Ruta de tu imagen */
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
       padding: 20px;
-      opacity: 0.5; /* Ajusta la opacidad */
-      z-index: -3; /* Envía el fondo detrás del contenido */
-      transition: background-color 0.7s, color 0.3s; /* Transición para el modo oscuro*/
+      border-radius: 15px; /* bordes redondeados */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* sombra */
+      opacity: 0.9; /* Ajusta la opacidad */
+      margin-bottom: 50px;
     }
 
-    .dark-mode .form-field {
-      font-family: 'Markazi Text', serif;  /* Cambiar a la fuente deseada */
-      font-size: 1.5em; /* Tamaño de letra más grande */
-      color: #000000; /* Color del texto */
-      color: #313030;
-      z-index: 1;
-    }
-
-    .dark-mode.form-field input {
-      font-family: 'Markazi Text', serif;  /* Cambiar la fuente de los inputs */
+    /* Modo claro: estilo normal */
+    #profileForm {
+      transition: opacity 0.3s ease; /* Suaviza la transición de opacidad */
     }
 
     .dark-mode.category-title {
@@ -145,6 +124,18 @@
     }
 
     /* Modo oscuro */
+    
+    @media (prefers-color-scheme: dark) {
+      #profileForm {
+        opacity: 0.95; /* Opacidad ajustada para el modo oscuro */
+        background-color: #333; /* Cambia el fondo si lo deseas */
+        color: #fff; /* Ajusta el color de texto si es necesario */
+      }
+
+      #profileImagePreview {
+        border: 3px solid #fff; /* O puedes cambiar el borde en modo oscuro */
+      }
+    }
     @media (prefers-color-scheme: dark) {
       button {
         background-color: #555;
@@ -223,7 +214,6 @@
       <p class="lead">Tu perfil, totalmente personalizable.</p>
       <hr class="mb-5">
     </div>
-    
     <div class="row justify-content-center mt-5 pt-4">
       <div class="col-md-12">
         <form id="profileForm" class="pt-5 pb-5 ps-2 pe-2 shadow">
@@ -235,8 +225,8 @@
                 class="img-fluid rounded-circle border" style="width: 200px;height: 200px;object-fit: cover;" />
                </div>
                <div class="col-md-12">
-                <button type="submit" class="btn btn-warning" id="subirfoto">Subir foto</button>
-                <input type="file" id="profilePhoto" accept="image/*" class="form-control mb-2 btn btn-warning" />
+              <button type="submit" class="btn btn-warning" id="subirfoto">Subir foto</button>
+              <input type="file" id="profilePhoto" accept="image/*" class="form-control mb-2 btn btn-warning" />
               </div>
             </div>
             <div class="col-md-9 row">

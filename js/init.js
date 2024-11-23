@@ -1,11 +1,14 @@
 // Funciones previas para la obtención de datos y la autenticación
-const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
-const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publish.json";
-const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
-const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
-const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
-const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
-const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
+const CATEGORIES_URL = '/data/cats/cat.json';
+const PUBLISH_PRODUCT_URL = "/data/sell/publish.json";
+const PRODUCTS_URL = "/data/cats_products/";
+const PRODUCT_INFO_URL = "/data/products/";
+const PRODUCT_INFO_COMMENTS_URL = "/data/products_comments/";
+const CART_INFO_URL = "/data/user_cart/";
+const CART_BUY_URL = "/data/cart/buy.json";
+const EXT_TYPE = ".json";
+
+// Funciones previas para la obtención de datos y la autenticación
 const EXT_TYPE = ".json";
 
 let showSpinner = function() {

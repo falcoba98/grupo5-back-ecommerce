@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>eMercado - Todo lo que busques está aquí</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+   <!-- aca saco la referencia a lo hoja de estilos-->
+
+  <style>
+    body {
+      background-image: url('https://i.pinimg.com/564x/01/9d/fa/019dfabf0312f0de5d3df51c5817d602.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: repeat;
+    }
+
+/* estilo de las tarjetas */
+.card {
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 8px #ff8a0d;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px; /* espacio abajo de cada tarjeta */
+}
+
+/* contenedor de productos */
+#productos-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* espacio entre las tarjetas de arriba a abajo*/
+  justify-content: flex-start; /* alinea las tarjetas hacia la izquierda */
+}
+
+/* Estilo para las tarjetas en pantallas grandes */
+.col-md-4 {
+  flex: 1 1 30%; /* 3 tarjetas por fila */
+  max-width: 30%; /* asegura que las tarjetas no se expandan */
+}
+
+/* estilo para pantallas medianas */
+@media (max-width: 991px) {
+  .col-md-4 {
+    flex: 1 1 45%; /* 2 tarjetas por fila*/
+    max-width: 45%;
+  }
+}
+
+/* estilo para pantallas pequeñas*/
+@media (max-width: 767px) {
+  .col-md-4 {
+    flex: 1 1 100%; /* 1 tarjeta por fila */
+    max-width: 100%;
+  }
+
+  #productos-lista {
+    gap: 10px; /* reduce el espacio entre las tarjetas en pantallas pequeñas */
+  }
+
+  .card {
+    margin-bottom: 10px; /* reduce el margen en pantallas pequeñas */
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <div class="container">
+      <!-- Botón de colapso para móviles -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Contenedor colapsable -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item">
+            <input type="text" id="inputBuscador" placeholder="Buscar">
+            <button type="submit">Buscar</button>
+            <ul id="resultados"></ul> <!-- Lista para mostrar resultados -->    
+          </li>
+          <li class="nav-item">
+            <button id="toggle-mode" class="btn btn-outline-light">
+              <i class="bi bi-moon-fill"></i>
+            </button>
+          </li>
+          <li class="nav-item dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Usuario
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito
+                  <span id="cartCountBadge" class="badge bg-danger ms-2"></span>
+                </a>
+              </li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="index.html" id="cerrarSesion">Cerrar sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- aca se puede cambiar a trener un solo contenedor seria mas facil, lo voy a ver desp -->
+  <main class="pb-5 container" style="margin-top: 2rem;">
+    <div class="container">
+      
+      <!-- titulo de la cat -->
+      <h1 class="text-start fw-bold mb-2" style="color: black; font-size: 2.0rem;" id="productos-titulo"></h1>
+
+      <main class="pb-5 container" style="margin-top: 2rem;">
+        <div class="container">
+          
+          <!-- Barrita de color -->
+          <hr style="border: 3px solid #ff8a0d; width: 100%; margin: 0 auto 20px auto;">
+          
+          <!-- Filtros y orden por precios -->
+          <div class="mb-4">
+            <form id="filter-form" class="row">
+
+            <!-- Filtros por rango de precio -->
+            <div class="col-md-4 mb-3">
+              <label for="min-price" class="form-label">Precio Mínimo</label>
+              <input type="number" id="min-price" class="form-control" placeholder="Precio Mínimo">
+              </div>
+            <div class="col-md-4 mb-3">
+              <label for="max-price" class="form-label">Precio Máximo</label>
+              <input type="number" id="max-price" class="form-control" placeholder="Precio Máximo">
+            </div>
+
+            <!-- Ordenar por..  -->
+            <div class="col-md-4 mb-3">
+              <label for="sort-order" class="form-label">Ordenar por</label>
+              <select id="sort-order" class="form-select">
+              <option value="price-asc">Precio: Ascendente</option>
+              <option value="price-desc">Precio: Descendente</option>
+              <option value="relevance-desc">Cantidad vendidos descendente</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <button type="button" id="apply-filters" class="btn btn-primary">Aplicar Filtros</button>
+              <button type="button" id="clear-filters" class="btn btn-danger">Limpiar Filtros</button>
+            </div>
+            </form>
+          </div>
+          
+          <h1 class="text-start fw-bold mb-2" style="color: black; font-size: 2.0rem;" id="productos-titulo"></h1>
+      
+          <!-- barrita de color -->
+          <hr style="border: 3px solid #ff8a0d; width: 100%; margin: 0 auto 20px auto;">
+      
+          <div class="row" id="productos-lista">
+          <!-- inserto las tarjetas de los productos de forma dinamica -->
+          </div> 
+        </div>
+      </main>
+  
+      <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <main class="pb-5 container" style="margin-top: 2rem;">
+      <div class="container">
+  </main>
+      
+  <div></div>     
+  <div></div>
+  <div></div>
+  <div></div>
+  </div>
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

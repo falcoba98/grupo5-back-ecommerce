@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const profilePhotoInput = document.getElementById("profilePhoto");
   const profileImagePreview = document.getElementById("profileImagePreview");
 
-      // Verificar si el usuario está logueado
+  // Verificar si el usuario está logueado
   const loggedUserEmail = localStorage.getItem('email');
   if (!loggedUserEmail) {
     alert('Por favor, inicia sesión primero.', 'warning');

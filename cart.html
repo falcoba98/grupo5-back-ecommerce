@@ -14,14 +14,30 @@
   <link href="css/styles.css" rel="stylesheet">
 
   <style>
-    body {
-      background-image: url('https://i.pinimg.com/564x/01/9d/fa/019dfabf0312f0de5d3df51c5817d602.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
-      transition: background-color 0.3s, color 0.3s; /* Transición para el modo oscuro*/
-    }
+  /* Aplica la fuente 'Markazi Text' a todo excepto la barra de navegacion */
+  *:not(.navbar *) {
+    font-family: 'Markazi Text', serif !important;
+    color: #000000 !important;
+  }
+
+  body {
+    background-image: url('https://i.pinimg.com/564x/01/9d/fa/019dfabf0312f0de5d3df51c5817d602.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    transition: background-color 0.3s, color 0.3s; /* Transición para el modo oscuro */
+    font-size: 20px !important; /* Tamaño base ideal */
+  }
+
+
+  .my-cart {
+    background-image: url('img/fondocart.jpg'); /* Ruta de tu imagen */
+    background-size: cover; /* Ajusta para que cubra todo el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen */
+  }
+
     /*no need really despues lo vemos*/
      hr{
       color: #FFA20D;
@@ -34,21 +50,14 @@
       font-weight: bold;
       text-align: center;
       border-radius: 8px;
-      font-size: 0.8rem;
+      font-size: 1,5rem;
     }
     .header-etiquetas {
       background-color: #FFC107;
       font-weight: bold;
       text-align: center;
-      padding: 12px;
+      padding: 5px;
       border-radius: 8px;
-    }
-
-    .my-cart {
-      background-image: url('img/fondocart.jpg'); /* Ruta de tu imagen */
-      background-size: cover; /* Ajusta para que cubra todo el contenedor */
-      background-repeat: no-repeat; /* Evita que la imagen se repita */
-      background-position: center; /* Centra la imagen */
     }
   </style>
 </head>
@@ -62,40 +71,41 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Contenedor colapsable -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav w-100 justify-content-between">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.html">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="categories.html">Categorías</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="sell.html">Vender</a>
-        </li>
-        <li class="nav-item">
-          <button id="toggle-mode" class="btn btn-outline-light">
-            <i class="bi bi-moon-fill"></i>
-          </button>
-        </li>
-        <li class="nav-item dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Usuario
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="cart.html">Mi carrito
-                <span id="cartCountBadge" class="badge bg-danger ms-2"></span>
-              </a>
-            </li>
-            <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-            <li><a class="dropdown-item" href="index.html" id="cerrarSesion">Cerrar sesión</a></li>
-          </ul>
-        </li>
-      </ul>
+      <!-- Contenedor colapsable -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item">
+            <button id="toggle-mode" class="btn btn-outline-light">
+              <i class="bi bi-moon-fill"></i>
+            </button>
+          </li>
+          <li class="nav-item dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Usuario
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito
+                  <span id="cartCountBadge" class="badge bg-danger ms-2"></span>
+                </a>
+              </li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="index.html" id="cerrarSesion">Cerrar sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+  
   <main class="container mt-5">
     <!-- <h2 class="text-left">Mi Carrito</h2> -->
     <!--<hr class="mb-5"> -->

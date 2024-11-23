@@ -21,52 +21,54 @@
       background-repeat: repeat;
     }
 
-    .card {
-      border: none;
-      border-radius: 0.25rem;
-      box-shadow: 0 4px 8px #ff8a0d;
-      height: 100%;
-      display: flex; /* se activa Flexbox en el contenedor */
-      flex-direction: column; /* los elementos dentro del contenedor se organizan en una columna vertical.*/
-    }
+/* estilo de las tarjetas */
+.card {
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 8px #ff8a0d;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px; /* espacio abajo de cada tarjeta */
+}
 
-    .card-body {
-      flex: 1; /* permite que .card-body crezca y llene el espacio disponible dentro del contenedor padre*/
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 1rem;
-    }
+/* contenedor de productos */
+#productos-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* espacio entre las tarjetas de arriba a abajo*/
+  justify-content: flex-start; /* alinea las tarjetas hacia la izquierda */
+}
 
-    .card-img-top {
-      width: 100%;
-      height: 200px;
-      object-fit: cover; /* hace que la imagen se recorte de manera que ocupe todo el espacio del contenedor mientras mantiene su relación de aspecto*/
-    }
+/* Estilo para las tarjetas en pantallas grandes */
+.col-md-4 {
+  flex: 1 1 30%; /* 3 tarjetas por fila */
+  max-width: 30%; /* asegura que las tarjetas no se expandan */
+}
 
-    .card {
-      border: none;
-      border-radius: 0.25rem;
-      box-shadow: 0 4px 8px #ff8a0d;
-      height: 100%;
-      display: flex; /* se activa Flexbox en el contenedor */
-      flex-direction: column; /* los elementos dentro del contenedor se organizan en una columna vertical.*/
-    }
+/* estilo para pantallas medianas */
+@media (max-width: 991px) {
+  .col-md-4 {
+    flex: 1 1 45%; /* 2 tarjetas por fila*/
+    max-width: 45%;
+  }
+}
 
-    .card-body {
-      flex: 1; /* permite que .card-body crezca y llene el espacio disponible dentro del contenedor padre*/
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 1rem;
-    }
+/* estilo para pantallas pequeñas*/
+@media (max-width: 767px) {
+  .col-md-4 {
+    flex: 1 1 100%; /* 1 tarjeta por fila */
+    max-width: 100%;
+  }
 
-    .card-img-top {
-      width: 100%;
-      height: 200px;
-      object-fit: cover; /* hace que la imagen se recorte de manera que ocupe todo el espacio del contenedor mientras mantiene su relación de aspecto*/
-    }
+  #productos-lista {
+    gap: 10px; /* reduce el espacio entre las tarjetas en pantallas pequeñas */
+  }
 
+  .card {
+    margin-bottom: 10px; /* reduce el margen en pantallas pequeñas */
+  }
+}
 
   </style>
 </head>

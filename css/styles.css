@@ -8,7 +8,20 @@
 .jumbotron .display-4 {
   font-weight: bold;
 }
+.navbar {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem; /* Tamaño normal */
+  color: #ffffff; 
+}
+.cart-tipo-envio-radio {
+  font-size: 1rem !important;/* ajusto el tamaño de la fuente */
 
+}
+
+.cart-tipo-envio-radio input {
+
+  margin-right: 0.5rem;  /* asegura espacio suficiente con el texto */
+}
 nav a {
   text-decoration: none;
 }
@@ -531,7 +544,7 @@ body.dark-mode .carousel-control-next {
 }
 
 .required{
-  color: red;
+  color: red; 
 }
 
 .btn-comprar{

@@ -1,14 +1,12 @@
 // Funciones previas para la obtención de datos y la autenticación
-const CATEGORIES_URL = '/data/cats/cat.json';
-const PUBLISH_PRODUCT_URL = "/data/sell/publish.json";
-const PRODUCTS_URL = "/data/cats_products/";
-const PRODUCT_INFO_URL = "/data/products/";
-const PRODUCT_INFO_COMMENTS_URL = "/data/products_comments/";
-const CART_INFO_URL = "/data/user_cart/";
-const CART_BUY_URL = "/data/cart/buy.json";
-const EXT_TYPE = ".json";
-
-// Funciones previas para la obtención de datos y la autenticación
+const BASE_URL = "http://localhost"
+const CATEGORIES_URL = BASE_URL+'/data/cats/cat.json';
+const PUBLISH_PRODUCT_URL = BASE_URL+"/data/sell/publish.json";
+const PRODUCTS_URL = BASE_URL+"/data/cats_products/";
+const PRODUCT_INFO_URL =BASE_URL+"/data/products/";
+const PRODUCT_INFO_COMMENTS_URL = BASE_URL+"/data/products_comments/";
+const CART_INFO_URL = BASE_URL+"/data/user_cart/";
+const CART_BUY_URL = BASE_URL+"/data/cart/buy.json";
 const EXT_TYPE = ".json";
 
 let showSpinner = function() {

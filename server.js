@@ -5,7 +5,7 @@ const port = 3000;
 const cors = require('cors'); // Importar cors
 
 // Servir archivos desde la raíz actual
-app.use(express.static(path.join(__dirname)));
+//app.use(express.static(path.join(__dirname)));
 
 // Middleware para servir archivos JSON
 app.use(express.json());
@@ -15,11 +15,6 @@ app.use(cors());
 
 // Servir archivos estáticos
 app.use('/data', express.static('data'));
-
-// Iniciar el servidor
-app.listen(port, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
 
 // Rutas para los archivos JSON
 app.get('/data/cats/cat.json', (req, res) => {

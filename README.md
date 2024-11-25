@@ -1,2 +1,5 @@
-#Proyecto e-commerce JaP
-Subgrupo 5
+# Instalar modulos
+Ejecutar npm install
+
+# Correr backend
+Ejecutar npm run

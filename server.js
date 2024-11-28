@@ -5,7 +5,7 @@ const port = 3000;
 const cors = require('cors'); // Importar cors
 const jwt = require('jsonwebtoken');
 const secretKey = 'proyecto-backend';
-
+const {db} = require('./db');
 // Servir archivos desde la raíz actual
 //app.use(express.static(path.join(__dirname)));
 
@@ -91,6 +91,35 @@ app.get('/data/cart/buy.json', authorizationMiddleware, (req, res) => {
 // Ruta raíz para verificar que el servidor funciona
 app.get('/', (req, res) => {
     res.send('¡El servidor está funcionando correctamente!');
+});
+
+app.post('/data/cart', authorizationMiddleware, async (req, res) => {
+    try {
+        const { items } = req.body;
+        const { email } = req.user;
+
+        // Validar datos
+        if (!email || !Array.isArray(items) || items.length === 0) {
+            return res.status(400).json({ error: 'Datos inválidos' });
+        }
+
+        // Guardar los items en la base de datos
+        const queries = items.map(item => {
+            const { productId, quantity, price } = item;
+            const subtotal = quantity * price;
+
+            return db.query(
+                'INSERT INTO cart_items (user_email, product_id, quantity, price, subtotal) VALUES (?, ?, ?, ?, ?)',
+                [email, productId, quantity, price, subtotal]
+            );
+        });
+
+        await Promise.all(queries); // Ejecutar todas las consultas
+        res.status(201).json({ message: 'Carrito guardado correctamente' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al guardar el carrito' });
+    }
 });
 
 // Iniciar el servidor
